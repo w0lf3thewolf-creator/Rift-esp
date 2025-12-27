@@ -1,0 +1,57 @@
+-- Код для Pastebin: https://pastebin.com/E1kw46jn
+-- RIFT MENU ESP - Круглый компактный ESP с маленькой иконкой
+
+--[[
+    ИНСТРУКЦИЯ:
+    1. Скопируйте этот код в Pastebin
+    2. В Executor выполните: loadstring(game:HttpGet("https://pastebin.com/raw/E1kw46jn"))()
+    3. Наслаждайтесь круглым ESP меню!
+]]--
+
+local success, errorMsg = pcall(function()
+    -- Проверка загрузки игры
+    if not game:IsLoaded() then
+        game.Loaded:Wait()
+    end
+    
+    -- Сервисы
+    local Players = game:GetService("Players")
+    local CoreGui = game:GetService("CoreGui")
+    local TweenService = game:GetService("TweenService")
+    
+    -- Удаляем старые копии меню
+    if CoreGui:FindFirstChild("RiftCircleESP") then
+        CoreGui.RiftCircleESP:Destroy()
+    end
+    
+    -- Создание GUI
+    local RiftMenu = Instance.new("ScreenGui")
+    RiftMenu.Name = "RiftCircleESP"
+    RiftMenu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    RiftMenu.ResetOnSpawn = false
+    
+    -- Главный круглый фрейм
+    local MainCircle = Instance.new("Frame")
+    MainCircle.Name = "MainCircle"
+    MainCircle.Size = UDim2.new(0, 80, 0, 80) -- Компактный размер
+    MainCircle.Position = UDim2.new(0.02, 0, 0.2, 0)
+    MainCircle.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+    MainCircle.BorderSizePixel = 0
+    MainCircle.Active = true
+    MainCircle.Draggable = true
+    
+    -- Делаем круглым
+    local CircleCorner = Instance.new("UICorner")
+    CircleCorner.CornerRadius = UDim.new(1, 0)
+    CircleCorner.Parent = MainCircle
+    
+    -- Тонкая обводка
+    local CircleStroke = Instance.new("UIStroke")
+    CircleStroke.Color = Color3.fromRGB(35, 35, 35)
+    CircleStroke.Thickness = 1
+    CircleStroke.Parent = MainCircle
+    
+    MainCircle.Parent = RiftMenu
+    
+    -- Центральная кнопка-круг
+    local
